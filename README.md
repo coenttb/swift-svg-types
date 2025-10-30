@@ -1,78 +1,25 @@
 # swift-svg-types
 
-A comprehensive, type-safe domain model of SVG elements and attributes in Swift.
+[![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-green.svg)](https://github.com/coenttb/swift-svg-types/releases)
 
-## Examples
+Type-safe Swift definitions for SVG elements, attributes, and value types.
 
-```swift
-import SVGTypes
+## Overview
 
-// Create SVG elements with appropriate attributes
-let circle = Circle(cx: 50, cy: 50, r: 40)
-let rect = Rect(x: 10, y: 10, width: 100, height: 80)
-let path = Path(d: "M10 10 L90 90")
-```
+`swift-svg-types` provides comprehensive type definitions for SVG (Scalable Vector Graphics), including:
 
-### Complex SVG compositions
-
-```swift
-let gradient = LinearGradient(
-    id: "myGradient",
-    x1: "0%", y1: "0%",
-    x2: "100%", y2: "100%"
-)
-
-let group = G(transform: "translate(50,50) rotate(45)")
-```
-
-## Motivation
-
-A domain model for SVG brings type safety and discoverability to SVG generation. This package provides accurate representations of all SVG elements and their specific attributes, ensuring valid SVG output at compile time.
-
-For example, creating a circle reveals only the attributes valid for circles:
-```swift
-let circle = Circle(
-    cx: CGFloat?,        // center x
-    cy: CGFloat?,        // center y
-    r: CGFloat?,         // radius
-    fill: String?,       // fill color
-    stroke: String?,     // stroke color
-    strokeWidth: CGFloat? // stroke width
-)
-```
-
-Compare this with rectangles that have a different set of attributes:
-```swift
-let rect = Rect(
-    x: CGFloat?,         // x position
-    y: CGFloat?,         // y position
-    width: CGFloat?,     // width
-    height: CGFloat?,    // height
-    rx: CGFloat?,        // corner radius x
-    ry: CGFloat?,        // corner radius y
-    fill: String?,       // fill color
-    stroke: String?      // stroke color
-)
-```
-
-> [!NOTE]
-> `swift-svg-types` is part of a modular ecosystem for SVG generation in Swift. It provides the foundational types, while other packages handle rendering and integration with HTML.
->
-> [Read about the architectural decisions behind this approach →](https://coenttb.com/blog/4)
-
-## Showcases
-
-- [coenttb/swift-svg](https://github.com/coenttb/swift-svg) - A Swift DSL for domain-accurate and type-safe SVG generation
-- [coenttb/swift-svg-printer](https://github.com/coenttb/swift-svg-printer) - Print SVG elements to strings
-- [coenttb/swift-html](https://github.com/coenttb/swift-html) - Integration with HTML generation
-
-Using `swift-svg-types` in your project? Open an issue or submit a PR to add your project to this list!
+- **SVG Elements**: Circle, Rect, Path, Line, Ellipse, Polygon, and more
+- **Container Elements**: G (group), Defs, Symbol, Use, ClipPath, Mask
+- **Gradient Elements**: LinearGradient, RadialGradient, Pattern, Stop
+- **Text Elements**: Text, TSpan
+- **Value Types**: SVGLength, SVGColor, SVGTransform, SVGViewBox
+- **Type Safety**: Strongly-typed models with Swift 6.0 concurrency support
 
 ## Installation
 
-### Swift Package Manager
-
-Add the dependency in your `Package.swift` file:
+Add to your `Package.swift`:
 
 ```swift
 dependencies: [
@@ -80,26 +27,235 @@ dependencies: [
 ]
 ```
 
-### Xcode
+## Quick Start
 
-1. Select File > Add Packages...
-2. Enter package URL: `https://github.com/coenttb/swift-svg-types`
-3. Choose the main branch or a specific version
+### Basic Shapes
 
-## Contribution
+```swift
+import SVGTypes
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+// Create a circle
+let circle = Circle(cx: 50, cy: 50, r: 40)
 
-## Feedback
+// Create a rectangle with rounded corners
+let rect = Rect(x: 10, y: 10, width: 100, height: 80, rx: 5, ry: 5)
 
-If you have suggestions or find issues, please open a GitHub issue. Your feedback helps make this project better for everyone.
+// Create a path
+let path = Path(d: "M10 10 L90 90")
+```
 
-> [Subscribe to my newsletter](http://coenttb.com/en/newsletter/subscribe)
->
-> [Follow me on X](http://x.com/coenttb)
->
-> [Connect on LinkedIn](https://www.linkedin.com/in/tenthijeboonkkamp)
+### Value Types
+
+```swift
+// SVGLength with units
+let pixels = SVGLength.px(100)
+let percentage = SVGLength.percentage(50)
+let em = SVGLength.em(2.5)
+
+print(pixels.stringValue)      // "100px"
+print(percentage.stringValue)  // "50%"
+
+// SVGColor
+let hex = SVGColor.hex("#FF5733")
+let rgb = SVGColor.rgb(r: 255, g: 87, b: 51)
+let named = SVGColor.named("red")
+
+print(hex.stringValue)   // "#FF5733"
+print(rgb.stringValue)   // "rgb(255,87,51)"
+
+// SVGViewBox
+let viewBox = SVGViewBox(width: 100, height: 200)
+print(viewBox.stringValue)  // "0 0 100 200"
+```
+
+## Usage Examples
+
+### Transformations
+
+```swift
+// Create transforms
+let translate = SVGTransform.translate(x: 10, y: 20)
+let rotate = SVGTransform.rotate(angle: 45)
+let scale = SVGTransform.scale(x: 2.0, y: 2.0)
+
+print(translate.stringValue)  // "translate(10 20)"
+print(rotate.stringValue)     // "rotate(45)"
+
+// Use in group
+let group = G(transform: translate)
+// Or multiple transforms
+let multiGroup = G(transform: [translate, rotate, scale])
+```
+
+### Gradients
+
+```swift
+// Linear gradient
+let gradient = LinearGradient(
+    id: "myGradient",
+    x1: "0%",
+    y1: "0%",
+    x2: "100%",
+    y2: "100%"
+)
+
+// Radial gradient
+let radial = RadialGradient(
+    id: "radialGrad",
+    cx: "50%",
+    cy: "50%",
+    r: "50%"
+)
+
+// Gradient stop
+let stop = Stop(
+    offset: "50%"
+)
+```
+
+### Complex Shapes
+
+```swift
+// Ellipse
+let ellipse = Ellipse(cx: 100, cy: 50, rx: 80, ry: 40)
+
+// Line
+let line = Line(x1: 0, y1: 0, x2: 100, y2: 100)
+
+// Polygon
+let triangle = Polygon(
+    points: "50,0 100,100 0,100"
+)
+
+// Polyline
+let polyline = Polyline(
+    points: "0,0 50,50 100,0"
+)
+```
+
+### Text Elements
+
+```swift
+// Text
+let text = Text(
+    x: 10,
+    y: 20,
+    content: "Hello SVG"
+)
+
+// Text span
+let tspan = TSpan(
+    x: 10,
+    y: 30,
+    dx: 5,
+    dy: 10
+)
+```
+
+### Container Elements
+
+```swift
+// Definitions container
+let defs = Defs()
+
+// Symbol for reusable graphics
+let symbol = Symbol(
+    id: "mySymbol",
+    viewBox: "0 0 100 100"
+)
+
+// Use element to reference symbols
+let use = Use(
+    href: "#mySymbol",
+    x: 50,
+    y: 50
+)
+
+// Clip path
+let clipPath = ClipPath(
+    id: "myClip"
+)
+
+// Mask
+let mask = Mask(
+    id: "myMask",
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100
+)
+```
+
+### SVG Attributes
+
+```swift
+// Fill rules
+let fillRule: SVGFillRule = .evenodd  // or .nonzero
+
+// Line caps
+let lineCap: SVGLineCap = .round  // .butt, .square
+
+// Line joins
+let lineJoin: SVGLineJoin = .miter  // .round, .bevel
+
+// Text anchors
+let anchor: SVGTextAnchor = .middle  // .start, .end
+
+// Display
+let display: SVGDisplay = .none  // .inline, .block
+```
+
+## Architecture
+
+### Element Protocol
+
+All SVG elements conform to `SVGElementType`:
+
+```swift
+public protocol SVGElementType {
+    static var tagName: String { get }
+    static var isSelfClosing: Bool { get }
+}
+```
+
+### Value Types
+
+The package includes type-safe value types:
+
+- `SVGPoint`: 2D point (x, y)
+- `SVGSize`: Size (width, height)
+- `SVGRect`: Rectangle (x, y, width, height)
+- `SVGViewBox`: ViewBox (minX, minY, width, height)
+- `SVGColor`: Color values (named, hex, rgb, rgba)
+- `SVGLength`: Lengths with units (px, %, em, ex, etc.)
+- `SVGTransform`: Transformations (translate, rotate, scale, skew, matrix)
+
+### Type Safety
+
+All types are:
+- `Sendable` for Swift 6.0 concurrency
+- `Equatable` for value comparisons
+- Immutable with `let` properties
+
+## Related Packages
+
+- [coenttb/swift-svg](https://github.com/coenttb/swift-svg) - DSL for type-safe SVG generation
+- [coenttb/swift-svg-printer](https://github.com/coenttb/swift-svg-printer) - Print SVG elements to strings
+- [coenttb/swift-html](https://github.com/coenttb/swift-html) - HTML DSL with SVG integration
+
+## Requirements
+
+- Swift 6.0+
+- macOS 14+ / iOS 17+ / Linux
 
 ## License
 
-This project is licensed under the Apache 2.0 License. See [LICENSE](LICENSE) for details.
+This package is licensed under the Apache 2.0 License. See [LICENSE](LICENSE) for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Support
+
+For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/coenttb/swift-svg-types).

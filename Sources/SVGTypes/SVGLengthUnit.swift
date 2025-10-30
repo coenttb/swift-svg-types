@@ -7,30 +7,30 @@
 
 /// Represents units for length values in SVG.
 public enum SVGLengthUnit: String, Sendable {
-    /// Pixels (user units).
-    case px
+  /// Pixels (user units).
+  case px
 
-    /// Percentage.
-    case percent = "%"
+  /// Percentage.
+  case percent = "%"
 
-    /// Em units (relative to font size).
-    case em
+  /// Em units (relative to font size).
+  case em
 
-    /// Ex units (relative to x-height).
-    case ex
+  /// Ex units (relative to x-height).
+  case ex
 
-    /// Points (1/72 of an inch).
-    case pt
+  /// Points (1/72 of an inch).
+  case pt
 
-    /// Picas (12 points).
-    case pc
+  /// Picas (12 points).
+  case pc
 
-    /// Millimeters.
-    case mm
+  /// Millimeters.
+  case mm
 
-    /// Centimeters.
-    case cm
+  /// Centimeters.
+  case cm
 
-    /// Inches.
-    case `in`
+  /// Inches.
+  case `in`
 }

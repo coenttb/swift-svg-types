@@ -8,13 +8,13 @@ let package = Package(
         .macOS(.v14),
         .iOS(.v17),
         .tvOS(.v17),
-        .watchOS(.v10),
+        .watchOS(.v10)
     ],
     products: [
         .library(
             name: "SVGTypes",
             targets: ["SVGTypes"]
-        ),
+        )
     ],
     targets: [
         .target(
@@ -23,14 +23,14 @@ let package = Package(
         .testTarget(
             name: "SVGTypesTests",
             dependencies: ["SVGTypes"]
-        ),
+        )
     ]
 )
 
 let swiftSettings: [SwiftSetting] = [
     .enableUpcomingFeature("MemberImportVisibility"),
     .enableUpcomingFeature("StrictUnsafe"),
-    .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+    .enableUpcomingFeature("NonisolatedNonsendingByDefault")
 ]
 
 for index in package.targets.indices {

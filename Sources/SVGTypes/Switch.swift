@@ -10,9 +10,9 @@
 /// The switch element evaluates its children in order and renders the first child
 /// whose testing conditions are satisfied.
 public struct Switch: SVGElementType {
-    public static let tagName = "switch"
-    public static let isSelfClosing = false
+  public static let tagName = "switch"
+  public static let isSelfClosing = false
 
-    /// Creates a new switch element.
-    public init() {}
+  /// Creates a new switch element.
+  public init() {}
 }
