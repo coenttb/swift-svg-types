@@ -240,9 +240,10 @@ All types are:
 
 ## Related Packages
 
-- [coenttb/swift-svg](https://github.com/coenttb/swift-svg) - DSL for type-safe SVG generation
-- [coenttb/swift-svg-printer](https://github.com/coenttb/swift-svg-printer) - Print SVG elements to strings
-- [coenttb/swift-html](https://github.com/coenttb/swift-html) - HTML DSL with SVG integration
+### Used By
+
+- [swift-svg](https://github.com/coenttb/swift-svg): A Swift package for type-safe SVG generation.
+- [swift-svg-printer](https://github.com/coenttb/swift-svg-printer): A Swift package for rendering SVG to String or bytes.
 
 ## Requirements
 
