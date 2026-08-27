@@ -1,4 +1,4 @@
-internal import Geometry_Primitives
+internal import Geometry
 
 extension W3C_SVG2.Paths.Path {
 

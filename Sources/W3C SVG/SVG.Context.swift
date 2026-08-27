@@ -1,4 +1,4 @@
-import Format_Primitives
+import Format
 
 extension Geometry.Ball where N == 2, Scalar == Double, Space == W3C_SVG.Space {
 

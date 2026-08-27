@@ -1,5 +1,5 @@
-import Format_Primitives
-public import Geometry_Primitives
+import Format
+public import Geometry
 
 extension W3C_SVG2.Paths.Path {
 

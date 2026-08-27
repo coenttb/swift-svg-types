@@ -7,7 +7,7 @@ Foundation-free Swift implementation of the W3C SVG 2 specification.
 
 ## Overview
 
-`swift-w3c-svg` provides a literal encoding of the W3C SVG 2 specification in Swift, following the specification's chapter structure. The implementation is Foundation-free and depends only on the Swift Primitives layer (Format, Geometry, Parser).
+`swift-w3c-svg` provides a literal encoding of the W3C SVG 2 specification in Swift, following the specification's chapter structure. The implementation is Foundation-free and depends only on the Swift Molecules layer (Format, Geometry, Parser).
 
 ## W3C SVG 2 Specification
 
@@ -19,7 +19,7 @@ This package implements the [W3C SVG 2 specification](https://www.w3.org/TR/SVG2
 - **Styling** (Chapter 6): CSS and presentation (infrastructure ready)
 
 ### Geometry & Coordinates
-- **Geometry** (Chapter 7): Positioning and sizing surfaced as typealiases on `W3C_SVG2` (`X`, `Y`, `Width`, `Height`, `Radius`) over Geometry Primitives — not a nested namespace
+- **Geometry** (Chapter 7): Positioning and sizing surfaced as typealiases on `W3C_SVG2` (`X`, `Y`, `Width`, `Height`, `Radius`) over Geometry — not a nested namespace
 - **Coordinates** (Chapter 8): Coordinate systems and transforms (infrastructure ready)
 
 ### Graphics Elements

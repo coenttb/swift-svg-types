@@ -1,4 +1,4 @@
-public import Geometry_Primitives
+public import Geometry
 
 extension W3C_SVG2.Ellipse.Arc {
 

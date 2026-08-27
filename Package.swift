@@ -19,15 +19,15 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-format-primitives.git",
+            url: "https://github.com/swift-molecules/swift-format.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-geometry-primitives.git",
+            url: "https://github.com/swift-molecules/swift-geometry.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-parser-primitives.git",
+            url: "https://github.com/swift-molecules/swift-parser.git",
             branch: "main"
         ),
     ],
@@ -35,9 +35,9 @@ let package = Package(
         .target(
             name: "W3C SVG",
             dependencies: [
-                .product(name: "Format Primitives", package: "swift-format-primitives"),
-                .product(name: "Geometry Primitives", package: "swift-geometry-primitives"),
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+                .product(name: "Format", package: "swift-format"),
+                .product(name: "Geometry", package: "swift-geometry"),
+                .product(name: "Parser", package: "swift-parser"),
             ]
         ),
         .testTarget(

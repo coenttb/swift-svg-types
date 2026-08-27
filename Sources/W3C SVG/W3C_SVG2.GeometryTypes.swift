@@ -1,4 +1,4 @@
-@_exported public import Geometry_Primitives
+@_exported public import Geometry
 
 extension W3C_SVG2 {
 

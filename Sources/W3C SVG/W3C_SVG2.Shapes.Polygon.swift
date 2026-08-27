@@ -1,4 +1,4 @@
-import Format_Primitives
+import Format
 
 extension W3C_SVG2.Shapes {
 
